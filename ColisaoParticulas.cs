@@ -3,6 +3,7 @@ using Xunit;
 
 public class Particula
 {
+    // Informações da partícula
     public double Massa { get; set; }
     public double VelocidadeX { get; set; }
     public double VelocidadeY { get; set; }
@@ -14,6 +15,7 @@ public class Particula
         VelocidadeY = velocidadeY;
     }
 
+    // Método que simula a colisão entre duas partículas
     public void Colidir(Particula outraParticula)
     {
         double m1 = Massa;
@@ -23,19 +25,25 @@ public class Particula
         double u2 = outraParticula.VelocidadeX;
         double v2 = outraParticula.VelocidadeY;
 
+        // Diferenças de velocidades
         double xDiff = u2 - u1;
         double yDiff = v2 - v1;
 
+         // Distâncias entre as partículas nas direções X e Y
         double xDist = outraParticula.VelocidadeX - VelocidadeX;
         double yDist = outraParticula.VelocidadeY - VelocidadeY;
 
+        // Produto escalar das diferenças de velocidade e distâncias
         double produtoEscalar = xDiff * xDist + yDiff * yDist;
 
+        // Escala de colisão
         double escalaColisao = produtoEscalar / ((m1 + m2) * (xDist * xDist + yDist * yDist));
 
+        // Componentes de colisão nas direções X e Y
         double xColisao = xDist * escalaColisao;
         double yColisao = yDist * escalaColisao;
 
+        // Atualização das velocidades das partículas
         VelocidadeX += xColisao / m1;
         VelocidadeY += yColisao / m1;
 
