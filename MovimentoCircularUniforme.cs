@@ -12,11 +12,13 @@ public class MovimentoCircularUniforme
         this.velocidadeAngular = velocidadeAngular;
     }
 
+    // Calcula a velocidade tangencial utilizando a fórmula v = r * ω
     public double CalcularVelocidadeTangencial()
     {
         return raio * velocidadeAngular;
     }
 
+    // Calcula a aceleração centrípeta utilizando a fórmula a = ω^2 * r
     public double CalcularAceleracaoCentripeta()
     {
         return Math.Pow(velocidadeAngular, 2) * raio;
