@@ -23,33 +23,7 @@ public class MovimentoCircularUniforme
     {
         return Math.Pow(velocidadeAngular, 2) * raio;
     }
-
-    [Fact]
-    public void TestarVelocidadeTangencial()
-    {
-        double raio = 2.0;
-        double velocidadeAngular = 3.0;
-        MovimentoCircularUniforme movimento = new MovimentoCircularUniforme(raio, velocidadeAngular);
-
-        double velocidadeTangencialCalculada = movimento.CalcularVelocidadeTangencial();
-        double velocidadeTangencialEsperada = raio * velocidadeAngular;
-
-        Assert.Equal(velocidadeTangencialEsperada, velocidadeTangencialCalculada, 5); // Com margem de erro de 5 casas decimais
-    }
-
-    [Fact]
-    public void TestarAceleracaoCentripeta()
-    {
-        double raio = 2.0;
-        double velocidadeAngular = 3.0;
-        MovimentoCircularUniforme movimento = new MovimentoCircularUniforme(raio, velocidadeAngular);
-
-        double aceleracaoCentripetaCalculada = movimento.CalcularAceleracaoCentripeta();
-        double aceleracaoCentripetaEsperada = Math.Pow(velocidadeAngular, 2) * raio;
-
-        Assert.Equal(aceleracaoCentripetaEsperada, aceleracaoCentripetaCalculada, 5); // Com margem de erro de 5 casas decimais
-    }
-
+    
     public static void Main(string[] args)
     {
         Console.WriteLine("Cálculo de Movimento Circular Uniforme");
@@ -68,4 +42,38 @@ public class MovimentoCircularUniforme
         Console.WriteLine($"Velocidade tangencial: {velocidadeTangencial} m/s");
         Console.WriteLine($"Aceleração centrípeta: {aceleracaoCentripeta} m/s^2");
     }
+    
+    [Fact]
+    public void TestarVelocidadeTangencial()
+    {
+        // Arrange
+        double raio = 2.0;
+        double velocidadeAngular = 3.0;
+        MovimentoCircularUniforme movimento = new MovimentoCircularUniforme(raio, velocidadeAngular);
+
+         // Act
+        double velocidadeTangencialCalculada = movimento.CalcularVelocidadeTangencial();
+        double velocidadeTangencialEsperada = raio * velocidadeAngular;
+
+        // Assert
+        Assert.Equal(velocidadeTangencialEsperada, velocidadeTangencialCalculada, 5); // Com margem de erro de 5 casas decimais
+    }
+
+    [Fact]
+    public void TestarAceleracaoCentripeta()
+    {
+        // Arrange
+        double raio = 2.0;
+        double velocidadeAngular = 3.0;
+        MovimentoCircularUniforme movimento = new MovimentoCircularUniforme(raio, velocidadeAngular);
+
+         // Act
+        double aceleracaoCentripetaCalculada = movimento.CalcularAceleracaoCentripeta();
+        double aceleracaoCentripetaEsperada = Math.Pow(velocidadeAngular, 2) * raio;
+
+        // Assert
+        Assert.Equal(aceleracaoCentripetaEsperada, aceleracaoCentripetaCalculada, 5); // Com margem de erro de 5 casas decimais
+    }
+
+   
 }
