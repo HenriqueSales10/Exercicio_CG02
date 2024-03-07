@@ -44,37 +44,9 @@ public class LancamentoProjetil
     }
 }
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        Console.WriteLine("Digite a velocidade inicial (m/s):");
-        double v0 = Convert.ToDouble(Console.ReadLine());
-
-        Console.WriteLine("Digite o ângulo de lançamento (graus):");
-        double angulo = Convert.ToDouble(Console.ReadLine());
-
-        Console.WriteLine("Digite o incremento de tempo (s):");
-        double incrementoTempo = Convert.ToDouble(Console.ReadLine());
-
-        Console.WriteLine("Digite o tempo total (s):");
-        double tempoTotal = Convert.ToDouble(Console.ReadLine());
-
-        double[,] dadosTrajetoria = LancamentoProjetil.CalcularTrajetoria(v0, angulo, incrementoTempo, tempoTotal);
-
-        Console.WriteLine("Tempo\tPosição X\tPosição Y");
-        for (int i = 0; i < dadosTrajetoria.GetLength(0); i++)
-        {
-            Console.WriteLine($"{dadosTrajetoria[i, 0]:F2}\t{dadosTrajetoria[i, 1]:F2}\t\t{dadosTrajetoria[i, 2]:F2}");
-        }
-        Console.WriteLine($"Tempo até o projétil atingir o solo: {LancamentoProjetil.CalcularTempoDeQueda(v0, angulo)} segundos");
-        Console.WriteLine("Nota: A aceleração de gravidade foi assumida como 9.81 m/s^2");
-    }
-}
-[TestClass]
 public class TestesLancamentoProjetil
 {
-    [TestMethod]
+    [Fact]
     public void TestarCalcularTempoDeQueda()
     {
         // Arrange
@@ -83,14 +55,14 @@ public class TestesLancamentoProjetil
         double anguloLancamento = 45;
         double tempoDeQuedaEsperado = 2.0385448843; // Valor calculado com precisão
 
-         // Act
+        // Act
         double tempoDeQuedaCalculado = LancamentoProjetil.CalcularTempoDeQueda(velocidadeInicial, anguloLancamento);
 
         // Assert
-        Assert.AreEqual(tempoDeQuedaEsperado, tempoDeQuedaCalculado, 0.0000000001); // Precisão de 10 casas decimais
+        Assert.Equal(tempoDeQuedaEsperado, tempoDeQuedaCalculado, 10); // Precisão de 10 casas decimais
     }
 
-    [TestMethod]
+    [Fact]
     public void TestarCalcularTrajetoria()
     {
         // Arrange
@@ -106,17 +78,17 @@ public class TestesLancamentoProjetil
         // Valor esperado para a posição final em y
         double posicaoFinalYEsperada = -349.081520518;
 
-         // Act
+        // Act
         // Calculando a trajetória do projétil
         double[,] dadosTrajetoria = LancamentoProjetil.CalcularTrajetoria(velocidadeInicial, anguloLancamento, incrementoTempo, tempoTotal);
 
         // Assert
         // Verificando a posição final em x
         double posicaoFinalXCalculada = dadosTrajetoria[dadosTrajetoria.GetLength(0) - 1, 1];
-        Assert.AreEqual(posicaoFinalXEsperada, posicaoFinalXCalculada, 0.000000001); // Precisão de 9 casas decimais
+        Assert.Equal(posicaoFinalXEsperada, posicaoFinalXCalculada, 9); // Precisão de 9 casas decimais
 
         // Verificando a posição final em y
         double posicaoFinalYCalculada = dadosTrajetoria[dadosTrajetoria.GetLength(0) - 1, 2];
-        Assert.AreEqual(posicaoFinalYEsperada, posicaoFinalYCalculada, 0.000000001); // Precisão de 9 casas decimais
+        Assert.Equal(posicaoFinalYEsperada, posicaoFinalYCalculada, 9); // Precisão de 9 casas decimais
     }
 }
