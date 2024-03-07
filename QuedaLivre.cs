@@ -3,6 +3,19 @@ using Xunit;
 
 public class QuedaLivre
 {
+    private static double CalcularPosicao(double alturaInicial, double tempo, double gravidade)
+    {
+        // Calcula a posição usando a fórmula da cinemática para queda livre.
+        // A posição é dada pela altura inicial menos metade da aceleração gravitacional multiplicada pelo quadrado do tempo.
+        return alturaInicial - 0.5 * gravidade * Math.Pow(tempo, 2);
+    }
+
+    private static double CalcularVelocidade(double tempo, double gravidade)
+    {
+         // Calcula a velocidade usando a fórmula da cinemática para queda livre.
+        // A velocidade é dada pela aceleração gravitacional multiplicada pelo tempo.
+        return gravidade * tempo;
+    }
     public static void Main(string[] args)
     {
         const double gravidade = 9.81;
@@ -33,16 +46,6 @@ public class QuedaLivre
             tempo += intervaloTempo;
         }
 
-    }
-
-    static double CalcularPosicao(double alturaInicial, double tempo, double gravidade)
-    {
-        return alturaInicial - 0.5 * gravidade * Math.Pow(tempo, 2);
-    }
-
-    static double CalcularVelocidade(double tempo, double gravidade)
-    {
-        return gravidade * tempo;
     }
 }
 public class QuedaLivreTests
