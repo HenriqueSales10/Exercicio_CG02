@@ -77,19 +77,23 @@ public class TestesLancamentoProjetil
     [TestMethod]
     public void TestarCalcularTempoDeQueda()
     {
+        // Arrange
         // Teste com velocidade inicial de 20 m/s e ângulo de lançamento de 45 graus
         double velocidadeInicial = 20;
         double anguloLancamento = 45;
         double tempoDeQuedaEsperado = 2.0385448843; // Valor calculado com precisão
 
+         // Act
         double tempoDeQuedaCalculado = LancamentoProjetil.CalcularTempoDeQueda(velocidadeInicial, anguloLancamento);
 
+        // Assert
         Assert.AreEqual(tempoDeQuedaEsperado, tempoDeQuedaCalculado, 0.0000000001); // Precisão de 10 casas decimais
     }
 
     [TestMethod]
     public void TestarCalcularTrajetoria()
     {
+        // Arrange
         // Dados de entrada
         double velocidadeInicial = 20;
         double anguloLancamento = 45;
@@ -102,9 +106,11 @@ public class TestesLancamentoProjetil
         // Valor esperado para a posição final em y
         double posicaoFinalYEsperada = -349.081520518;
 
+         // Act
         // Calculando a trajetória do projétil
         double[,] dadosTrajetoria = LancamentoProjetil.CalcularTrajetoria(velocidadeInicial, anguloLancamento, incrementoTempo, tempoTotal);
 
+        // Assert
         // Verificando a posição final em x
         double posicaoFinalXCalculada = dadosTrajetoria[dadosTrajetoria.GetLength(0) - 1, 1];
         Assert.AreEqual(posicaoFinalXEsperada, posicaoFinalXCalculada, 0.000000001); // Precisão de 9 casas decimais
