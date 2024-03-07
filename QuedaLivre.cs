@@ -52,26 +52,26 @@ public class QuedaLivreTests
 {
     public static void TestarCalcularPosicao()
     {
+        // Arrange
         double alturaInicial = 10.0;
         double tempo = 2.0;
         double gravidade = 9.81;
 
+         // Act
         double posicao = QuedaLivre.CalcularPosicao(alturaInicial, tempo, gravidade);
+        // Assert
         Console.WriteLine($"Posição esperada: -5.19 m, Posição calculada: {posicao} m");
     }
 
     public static void TestarCalcularVelocidade()
     {
+        // Arrange
         double tempo = 2.0;
         double gravidade = 9.81;
 
+         // Act
         double velocidade = QuedaLivre.CalcularVelocidade(tempo, gravidade);
+        // Assert
         Console.WriteLine($"Velocidade esperada: 19.62 m/s, Velocidade calculada: {velocidade} m/s");
-    }
-
-    public static void Main(string[] args)
-    {
-        TestarCalcularPosicao();
-        TestarCalcularVelocidade();
     }
 }
