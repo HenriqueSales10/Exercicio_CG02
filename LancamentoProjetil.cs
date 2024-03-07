@@ -5,33 +5,40 @@ public class LancamentoProjetil
 {
     public static double[,] CalcularTrajetoria(double v0, double angulo, double incrementoTempo, double tempoTotal)
     {
-        double anguloRad = angulo * Math.PI / 180.0;
+        // Conversão do ângulo de graus para radianos
+        double anguloRad = angulo * Math.PI / 180.0; 
+        // Componentes horizontal e vertical da velocidade inicial
         double v0x = v0 * Math.Cos(anguloRad);
         double v0y = v0 * Math.Sin(anguloRad);
+        // Número de pontos ao longo da trajetória
         int numPontos = (int)(tempoTotal / incrementoTempo) + 1;
+        // Matriz para armazenar os dados da trajetória: tempo, posição horizontal e vertical
         double[,] dadosTrajetoria = new double[numPontos, 3];
+        // Tempo inicial
         double tempo = 0;
-
+        // Loop para calcular os pontos ao longo da trajetória
         for (int i = 0; i < numPontos; i++)
         {
+            // Cálculo da posição horizontal e vertical no tempo atual
             double x = v0x * tempo;
-            double y = v0y * tempo - 0.5 * 9.81 * tempo * tempo;
-
-            dadosTrajetoria[i, 0] = tempo;
-            dadosTrajetoria[i, 1] = x;
-            dadosTrajetoria[i, 2] = y;
-
+            double y = v0y * tempo - 0.5 * 9.81 * tempo * tempo; // Considerando a aceleração da gravidade como -9.81 m/s^2
+            // Armazenamento dos dados na matriz de trajetória
+            dadosTrajetoria[i, 0] = tempo; // Tempo
+            dadosTrajetoria[i, 1] = x;     // Posição horizontal
+            dadosTrajetoria[i, 2] = y;     // Posição vertical
             tempo += incrementoTempo;
-        }
-
+        }    
         return dadosTrajetoria;
     }
-
     public static double CalcularTempoDeQueda(double v0, double angulo)
     {
+        // Conversão do ângulo de graus para radianos
         double anguloRad = angulo * Math.PI / 180.0;
+        // Componente vertical da velocidade inicial
         double v0y = v0 * Math.Sin(anguloRad);
-        double delta = v0y * v0y + 2 * 9.81 * 0;
+        // Cálculo do discriminante da equação quadrática para determinar o tempo de queda
+        double delta = v0y * v0y + 2 * 9.81 * 0;   
+        // Cálculo do tempo de queda usando a fórmula quadrática
         double tempoDeQueda = (-v0y - Math.Sqrt(delta)) / (-9.81);
         return tempoDeQueda;
     }
