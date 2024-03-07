@@ -13,7 +13,10 @@ public class SimuladorPenduloSimples
 
     public double CalcularPosicaoAngular(double massa, double tempo)
     {
+        // A frequência angular é a raiz quadrada da gravidade dividida pelo comprimento do pêndulo.
         double frequenciaAngular = Math.Sqrt(gravidade / comprimento);
+       
+        // A posição angular é dada pela metade de pi multiplicada pelo cosseno da frequência angular multiplicada pelo tempo.
         double posicaoAngular = Math.PI / 2 * Math.Cos(frequenciaAngular * tempo);
         return posicaoAngular;
     }
